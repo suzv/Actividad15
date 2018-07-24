@@ -4,12 +4,13 @@ file.close
  require 'csv'
 
 
-    puts '           MENU         '
-    puts '1.conocer la cantidad de productos existentes'
-    puts '2.stock total (suma en las bodegas) de producto'
-    puts '3.muestra los productos no registrados en cada bodega'
-    puts '4.conocer los productos con una existencia total menor a un valor'
-    puts '5.registrar un nuevo producto con su respectivo stock en cada bodega'
+ puts '           MENU         '
+ puts '1. Conocer la cantidad de productos existentes'
+ puts '2. Stock total (suma en las bodegas) de producto'
+ puts '3. Muestra los productos no registrados en cada bodega'
+ puts '4. Conocer los productos con una existencia total menor a un valor'
+ puts '5. Registrar un nuevo producto con su respectivo stock en cada bodega'
+ puts '6. Salir'
 
 option = gets.chomp.to_i
   while option != 6
@@ -119,13 +120,29 @@ option = gets.chomp.to_i
      end
 
    when 5
-     
+     puts 'ingresa el nombre del producto que deseas ingresar'
+     producto = gets.chomp
+     puts 'ingresa su stock en bodega 1'
+     bodega1 = gets.chomp
+     puts 'ingresa su stock en bodega 2'
+     bodega2 = gets.chomp
+     puts 'ingresa su stock en bodega 3'
+     bodega3 = gets.chomp
+     CSV.open("products.csv", "a+") do |csv|
+        csv << [producto,' ' + bodega1,' '+ bodega2,' ' + bodega3]
+      end
 
 
     else
       puts 'ingresa un número de opción valido'
     end
     puts '           MENU         '
+    puts '1. Conocer la cantidad de productos existentes'
+    puts '2. Stock total (suma en las bodegas) de producto'
+    puts '3. Muestra los productos no registrados en cada bodega'
+    puts '4. Conocer los productos con una existencia total menor a un valor'
+    puts '5. Registrar un nuevo producto con su respectivo stock en cada bodega'
+    puts '6. Salir'
 
     option = gets.chomp.to_i
 end
