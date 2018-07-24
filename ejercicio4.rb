@@ -8,6 +8,8 @@ file.close
     puts '1.conocer la cantidad de productos existentes'
     puts '2.stock total (suma en las bodegas) de producto'
     puts '3.muestra los productos no registrados en cada bodega'
+    puts '4.conocer los productos con una existencia total menor a un valor'
+    puts '5.registrar un nuevo producto con su respectivo stock en cada bodega'
 
 option = gets.chomp.to_i
   while option != 6
@@ -99,7 +101,6 @@ option = gets.chomp.to_i
 
 
     when 3
-
       csv = CSV.read('products.csv', headers: false)
       csv.each do |row|
         puts 'en bodega 1 no hay: ' + row[0] if row[1] == " NR"
@@ -107,7 +108,18 @@ option = gets.chomp.to_i
         puts 'en bodega 3 no hay: ' + row[0] if row[3] == " NR"
       end
 
+   when 4
+     puts 'ingresa un valor'
+     valor = gets.chomp.to_i
+     csv = CSV.read('products.csv', headers: false)
+     sum = 0
+     csv.each do |row|
+       sum = row[1].to_i + row[2].to_i + row[3].to_i
+       puts row[0] + '<- el total de stock es menor o igual al valor' if sum <= valor
+     end
 
+   when 5
+     
 
 
     else
